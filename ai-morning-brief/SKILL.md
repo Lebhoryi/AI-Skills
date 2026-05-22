@@ -210,13 +210,21 @@ Horizon 能力参考：飞书/邮件/Webhook/MCP 发布见 [Horizon README](http
 - `{YYYYMMDD}` 使用当天日期，例如 `AI简报20260521.md`
 - 若当天文件已存在，覆盖当天文件；不要改动其它历史简报
 - 保存后进入 `/home/lebhoryi/Project/AI-News-weekly/2026`
-- 只 `git add` 本次生成的 Markdown 文件，不要 `git add .`
+- 同步更新 `/home/lebhoryi/Project/AI-News-weekly/2026/README.md`
+  - 若当天条目不存在，在目录表中新增一行
+  - 行格式：`| {MM-DD} | [AI简报{YYYYMMDD}](./AI简报{YYYYMMDD}.md) | {3-5 个关键词} |`
+  - 关键词从当日精选和洞察中提取，避免空泛词
+- 同步更新 `/home/lebhoryi/Project/AI-News-weekly/README.md`
+  - `最新：` 链接指向当天简报
+  - `2026` 表格中对应月份补入当天链接
+  - 不重排旧年份内容，不改动历史链接
+- 只 `git add` 本次生成的 Markdown 文件、`2026/README.md`、根 `README.md`，不要 `git add .`
 - 若 `git status --short` 显示没有变化，则说明内容未变，跳过 commit 和 push
 - 若有变化，按仓库既有风格提交并推送：
 
 ```bash
 cd /home/lebhoryi/Project/AI-News-weekly/2026
-git add "AI简报{YYYYMMDD}.md"
+git add "AI简报{YYYYMMDD}.md" "README.md" "../README.md"
 git commit -m "add {MMDD}"
 git push
 ```
@@ -225,7 +233,7 @@ git push
 
 ## Output format
 
-Markdown，可直接粘贴到微信公众号编辑器、知乎或 Notion；同时保存到 AI-News-weekly 仓库并执行 add / commit / push。
+Markdown，可直接粘贴到微信公众号编辑器、知乎或 Notion；同时保存到 AI-News-weekly 仓库，更新 README 索引，并执行 add / commit / push。
 
 ## Notes
 
